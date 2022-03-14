@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<html lang="">
+
+<head>
+<title>Avodha Shopping</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'fr/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding-left: 56px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+  .abcd
+  {
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!-- ######## Search and other icons ######### --->
+<div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+      <div class="fl_left">
+
+        <!--DROP DOWNBOX-->
+
+<div class="dropdown">
+  <button class="dropbtn">Filter</button>
+  <div class="dropdown-content">
+  <a href="/">All</a>
+    {% for i in ct %}
+      <a href={{i.get_url}}>{{i.name}}</a>
+       {% endfor %}
+  </div>
+</div>
+        <!-- ################################################################################################ -->
+
+      </div>
+      <div class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+
+            {% if user.is_authenticated %}
+          <li>Login {{user.username}}</li>
+          <li class="active"><a href="accounts/logout">Logout</a></li>
+
+          {% else %}
+          <li class="active"><a href="accounts/login">Login</a></li>
+          <li class="active"><a href="accounts/register">Sign Up</a>
+           {% endif %}
+
+
+
+<!--          <li><a href="index.html"><i class="fas fa-home"></i></a></li>-->
+<!--          <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>-->
+<!--          <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>-->
+<!--          <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>-->
+          <li id="searchform">
+            <div>
+              <form action="{% url 'search' %}" method="get">
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter item to search" name="q">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+  </div>
+<!-- Top Background Image Wrapper -->
+<div class="abcd" style="background-image:url({% static 'fr/images/demo/backgrounds/bg1.jpg' %});">
+
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div id="pageintro" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <article>
+      <h3 class="heading">Purchase Quality Foods</h3>
+      <p>Quality food is best for our health</p>
+
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+
+
+<!-- ################################################################################################ -->
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+
+    <section id="introblocks">
+
+      <ul class="nospace group btmspace-80">
+    {% for i in pg.object_list %}
+        <li class="one_third">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:300px; width:350px;"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.desc|truncatewords:15}}</p>
+
+            </figcaption>
+          </figure>
+        </li>
+   {% endfor %}
+
+      </ul>
+
+
+    </section>
+    <center>
+      {% for p in pg.paginator.page_range %}
+      <a href="?page={{p}}"class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+
+
+      {% endfor %}
+
+
+
+    </center>
+
+    <!-- ################################################################################################ -->
+    <hr class="btmspace-80">
+    <!-- ################################################################################################ -->
+
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded" style="background-image:url({% static 'fr/images/demo/backgrounds/04.png' %});">
+  <section id="testimonials" class="hoc clear">
+    <!-- ################################################################################################ -->
+
+    <!-- ################################################################################################ -->
+  </section>
+
+</div>
+
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="bgded overlay row4" style="background-image:url({% static 'fr/images/demo/backgrounds/bg.jpg' %});">
+  <footer id="footer" class="hoc clear">
+    <!-- ################################################################################################ -->
+<!--    <div class="center btmspace-50">-->
+<!--      <h6 class="heading">Online Shopping</h6>-->
+<!--      <ul class="faico clear">-->
+<!--        <li><a class="faicon-dribble" href="#"><i class="fab fa-dribbble"></i></a></li>-->
+<!--        <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>-->
+<!--        <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>-->
+<!--        <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>-->
+<!--        <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>-->
+<!--        <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>-->
+<!--      </ul>-->
+<!--      <p class="nospace">Connect with</p>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; ################################################################################################ &ndash;&gt;-->
+    <hr class="btmspace-50">
+    <!-- ################################################################################################ -->
+
+    <div id="ctdetails" class="clear">
+      <ul class="nospace clear">
+        <li class="one_quarter first">
+          <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>Give us a call:</strong> +00 (123) 456 7890</span></div>
+        </li>
+        <li class="one_quarter">
+          <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Send us a mail:</strong> avodhaonlineshopping@gmail.com</span></div>
+        </li>
+        <li class="one_quarter">
+          <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> Customer Support</strong> 24hr service</span></div>
+        </li>
+        <li class="one_quarter">
+          <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>Come visit us:</strong> www.avodhaonlineshopping.co</a></span></div>
+        </li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static 'fr/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'fr/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'fr/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}

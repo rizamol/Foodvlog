@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<html lang="">
+
+<head>
+<title>Avodha Shopping</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'fr/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+
+
+
+
+</style>
+</head>
+<body id="top">
+
+
+
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+
+
+    <!-- ################################################################################################ -->
+    <hr class="btmspace-80">
+    <!-- ################################################################################################ -->
+
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+  <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+        {% for i in pr %}
+        <li class="one_third">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:300px; width:350px"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.desc|truncatewords:15}}</p>
+
+              <p>Price: Rs. {{i.price}}/-</p>
+              <p>Stock left: {{i.stock}}</p>
+
+            </figcaption>
+          </figure>
+        </li>
+        {% endfor %}
+
+      </ul>
+    </section>
+
+
+</body>
+</html>
+{% endblock %}

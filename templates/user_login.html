@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>login</title>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+input[type=text], input[type=password] {
+  width: 30%;
+  padding: 14px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  display: inline-block;
+}
+
+
+
+.container {
+  padding: 30px;
+  border: 5px solid #f1f1f1;
+  text-align:center;
+}
+
+
+</style>
+</head>
+<body>
+
+
+
+<form action="login" method="post">
+{% csrf_token %}
+<br><br><br><br>
+  <div class="container">
+      <br><h2 style="color:red;">Login Form</h2>
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" name="username" placeholder="Username"><br>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" name="password" placeholder="Password"><br><br>
+
+    <button type="submit">Login</button>
+
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+
+  </div>
+</form>
+
+</body>
+</html>
+{% endblock %}
